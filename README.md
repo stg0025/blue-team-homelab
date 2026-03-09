@@ -1,6 +1,6 @@
 # Blue Team SOC Home Lab Report
 
-**Analyst:** [your name]  
+**Analyst:** Sam Germanson 
 **Date:** March 2026  
 **Status:** Complete  
 **Repository:** https://github.com/stg0025/blue-team-homelab
