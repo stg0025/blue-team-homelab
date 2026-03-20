@@ -9,9 +9,9 @@
 | Affected Host | DESKTOP-UTEILEI |
 | Affected User | endpointuser |
 | Detection Source | Splunk saved alert, Windows Security Log EventCode 4688 |
-| MITRE Technique | T1059.001 — Command and Scripting Interpreter: PowerShell |
-| Determination | True Positive — activity was intentionally generated via Atomic Red Team test T1059.001-17 for lab validation purposes |
-| Analyst | [your name] |
+| MITRE Technique | T1059.001 - Command and Scripting Interpreter: PowerShell |
+| Determination | True Positive - activity was intentionally generated via Atomic Red Team test T1059.001-17 for lab validation purposes |
+| Analyst | Sam Germanson |
 
 ---
 
@@ -19,8 +19,8 @@
 
 **Detection Query:**
 ```
-index=windows_logs sourcetype="WinEventLog:Security" EventCode=4688 
-New_Process_Name=*powershell.exe* 
+index=windows_logs sourcetype="WinEventLog:Security" EventCode=4688
+New_Process_Name=*powershell.exe*
 (Process_Command_Line=*EncodedCommand* OR Process_Command_Line=*-enc *)
 ```
 
@@ -32,7 +32,7 @@ New_Process_Name=*powershell.exe*
 
 | Time | Event |
 |---|---|
-| 2026-03-08 | Atomic Red Team test T1059.001-17 executed on Windows-Endpoint |
+| 2026-03-08 | Atomic Red Team test T1059.001-17 executed on DESKTOP-UTEILEI |
 | 2026-03-08 | powershell.exe launched with -EncodedCommand parameter |
 | 2026-03-08 | Encoded command decoded to harmless Write-Host execution |
 | 2026-03-08 | Process exited cleanly with exit code 0 |
@@ -46,7 +46,7 @@ The alert fired on a PowerShell process creation event where the command line in
 
 In this case the parent process was the Atomic Red Team test framework running under the endpointuser account during authorized lab testing. The encoded command decoded to a benign Write-Host statement with no malicious payload.
 
-In a production environment this alert would require immediate triage. Key questions would be: what account ran it, what was the parent process, what did the encoded command decode to, and has this host generated other alerts recently.
+In a production environment this alert would require immediate triage. Key questions: what account ran it, what was the parent process, what did the encoded command decode to, and has this host generated other alerts recently.
 
 ---
 
